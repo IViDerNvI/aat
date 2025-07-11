@@ -1,0 +1,65 @@
+\documentclass{article}
+
+%%%%%%%%%%%%%%%%%
+%
+% Packages here
+%
+%%%%%%%%%%%%%%%%%
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+\usepackage{fontspec}
+\usepackage[colorlinks=true, linkcolor=blue]{hyperref}
+\usepackage{graphicx}
+
+
+%%%%%%%%%%%%%%%%%%%
+%
+% Fonts here
+%
+%%%%%%%%%%%%%%%%%%%
+
+\setCJKmainfont{simsun.ttc}[Path=fonts/, BoldFont=simhei.ttf, ItalicFont=simkai.ttf]
+\setCJKmonofont{simfang.ttf}[Path=fonts/]
+
+
+%%%%%%%%%%%%%%%%%%%%
+%
+% Title here
+%
+%%%%%%%%%%%%%%%%%%%%
+\title{公务员考试行测复习资料}
+\author{IViDerNvI}
+\date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%
+%
+% Document here
+%
+%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\input{sections/行测/资料分析/资料分析.tex}
+\newpage
+\input{sections/行测/逻辑推理/逻辑推理.tex}
+\newpage
+\input{sections/行测/言语理解/言语理解.tex}
+\newpage
+\input{sections/行测/数量关系/数量关系.tex}
+\newpage
+\input{sections/行测/常识判断/常识判断.tex}
+\newpage
+\appendix
+\input{sections/附录/附录.tex}
+
+\end{document}

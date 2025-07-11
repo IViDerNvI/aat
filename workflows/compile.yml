@@ -1,0 +1,32 @@
+name: Build and Release LaTeX document
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build_release_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          latexmk_use_xelatex: true
+          extra_fonts: |
+            ./fonts/*.ttf
+            ./fonts/*.ttc
+      - name: Test Directory Contents
+        run: ls -lah
+  
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            main.pdf
+            LICENCE
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
