@@ -1,0 +1,96 @@
+\subsection{排列组合}
+
+\subsubsection{排列组合的基本概念}
+
+\paragraph{排列} 指从一组元素中选出若干个元素进行有序的排列。对于 $n$ 个元素中选出 $r$ 个元素进行排列，记作 $A_n^r$，其计算公式为：
+
+\[
+    A_n^r = \frac{n!}{(n-r)!}
+\]
+
+\paragraph{组合} 指从一组元素中选出若干个元素进行无序的组合。对于 $n$ 个元素中选出 $r$ 个元素进行组合，记作 $C_n^r$，其计算公式为：
+
+\[
+    C_n^r = \frac{n!}{r!(n-r)!}
+\]
+
+\subsubsection{排列组合的应用}
+
+\paragraph{插板法} 用于解决将 $n$ 个相同的物品放入 $k$ 个不同的盒子中的问题。可以将问题转化为在 $n+k-1$ 个位置中选择 $k-1$ 个位置放置分隔符。
+
+\begin{quote}
+    \begin{tcolorbox}[colback=red!5!white, colframe=red!75!black, title=插板法]
+        \textit{将 5 个相同的球放入 3 个不同的盒子中，问有多少种不同的方案}
+        \tcblower%
+        \begin{center}
+            \begin{tikzpicture}
+                \foreach \x in {1, 2, 3, 4, 5} {
+                        \node[circle, draw, fill=blue!30] at (\x, 0) {};
+                    }
+                \foreach \x in {6, 7} {
+                        \node[rectangle, draw, fill=red!30] at (\x, 0) {};
+                    }
+                \node at (1, -0.5) {球};
+                \node at (6, -0.5) {分隔符};
+            \end{tikzpicture}
+        \end{center}
+        \texttt{将 5 个球和 2 个分隔符（插板）放在一起，共有 $5 + 2 = 7$ 个位置，从中选择 2 个位置放置分隔符，方案数为 $C_7^2 = 21$}
+    \end{tcolorbox}
+\end{quote}
+
+\paragraph{捆绑法} 对于可以看作一个整体的元素进行组合时，可以将其视为一个单独的元素进行排列或组合。
+
+\begin{quote}
+    \begin{tcolorbox}[colback=red!5!white, colframe=red!75!black, title=捆绑法]
+        \textit{将 3 个白球和 2 个黑球放在一起，要求黑球互相临近，问有多少种不同的排列方式}
+        \tcblower%
+        \begin{center}
+            \begin{tikzpicture}
+                % White balls
+                \foreach \x in {1, 2, 3} {
+                        \node[circle, draw, fill=white] at (\x, 0) {};
+                    }
+                % Black balls (bundled)
+                \node[rectangle, draw, fill=black!30, minimum width=1.5cm, minimum height=0.8cm] at (4.5, 0) {};
+                \node[circle, draw, fill=black] at (4, 0) {};
+                \node[circle, draw, fill=black] at (5, 0) {};
+                % Labels
+                \node at (1, -0.5) {白球};
+                \node at (4.5, -0.7) {捆绑的黑球};
+            \end{tikzpicture}
+        \end{center}
+        \texttt{将 2 个黑球视为一个整体（捆绑），
+            则有 3 个白球和 1 个大黑球进行排列，共有 $A_4^1 = 4$ 种排列方式。}
+    \end{tcolorbox}
+\end{quote}
+
+\paragraph{插空法} 要求部分元素不许相邻时，可以先将其他元素排好，再将特殊元素插入在空隙中。注意与插板法的区别。
+
+\begin{quote}
+    \begin{tcolorbox}[colback=red!5!white, colframe=red!75!black, title=插空法]
+        \textit{将 3 个白球和 2 个黑球放在一起，要求黑球不许相邻，问有多少种不同的排列方式}
+        \tcblower%
+        \begin{center}
+            \begin{tikzpicture}
+                % White balls
+                \foreach \x in {1, 3, 5} {
+                        \node[circle, draw, fill=white] at (\x, 0) {};
+                    }
+                % Gaps (vertical lines)
+                \foreach \x in {0, 2, 4, 6} {
+                        \draw[thick] (\x, -0.5) -- (\x, 0.5);
+                    }
+                % Labels
+                \node at (0, -1) {空隙};
+                \node at (1, -1) {白球};
+                \node at (2, -1) {空隙};
+                \node at (3, -1) {白球};
+                \node at (4, -1) {空隙};
+                \node at (5, -1) {白球};
+                \node at (6, -1) {空隙};
+            \end{tikzpicture}
+        \end{center}
+        \texttt{先将 3 个白球排好，形成 4 个空隙（前、后和两个中间），然后在这些空隙中选择 2 个放置黑球。共用 $C_3^3C_4^2$}
+    \end{tcolorbox}
+\end{quote}
+
